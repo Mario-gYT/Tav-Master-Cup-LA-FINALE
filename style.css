@@ -1,0 +1,407 @@
+/* Importazione Font Google */
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Great+Vibes&display=swap');
+
+/* Variabili Colori */
+:root {
+    --gold: #A68E5D; 
+    --black-text: #222222; 
+    --paper-white: #FDFDFD; 
+    --boy-color: #79A6D2; 
+    --girl-color: #F8BBD0; 
+    --social-color: #6c757d; 
+}
+
+/* Stile base */
+body {
+    background-color: #000; 
+    color: #333; 
+    font-family: 'Playfair Display', serif; 
+    display: flex;
+    justify-content: center;
+    align-items: center; 
+    min-height: 100vh;
+    margin: 0;
+    padding: 20px;
+    box-sizing: border-box;
+    overflow-x: hidden; 
+}
+
+.gold-text { color: var(--gold); }
+.black-text { color: var(--black-text); }
+#toggle { display: none; }
+
+
+/* ------------------------------------- */
+/* CONTENITORE E STATI */
+/* ------------------------------------- */
+
+#envelope-container {
+    width: 90%;
+    max-width: 500px;
+    min-height: 600px; 
+    background-color: transparent; 
+    border: none;
+    padding: 0;
+    text-align: center;
+    box-shadow: none;
+    position: relative;
+    overflow: hidden; 
+}
+
+/* ------------------------------------- */
+/* STATO CHIUSO (Animazione Busta) */
+/* ------------------------------------- */
+
+#closed-state {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: var(--paper-white); 
+    border: 1px solid var(--gold); 
+    border-radius: 5px;
+    z-index: 100;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    transition: transform 0.8s ease-in-out;
+}
+
+#closed-state h1 {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 103;
+}
+
+/* La Finta Busta (il lembo) */
+.envelope-flap {
+    position: absolute;
+    top: 0;
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 150px 250px 0 250px;
+    border-color: #f0f0f0 transparent transparent transparent; 
+    z-index: 102;
+    cursor: pointer;
+    transition: transform 0.8s, border-width 0.8s;
+}
+
+.open-label {
+    position: absolute;
+    bottom: 10%;
+    color: var(--gold);
+    border: 1px solid var(--gold);
+    padding: 8px 20px;
+    border-radius: 50px;
+    cursor: pointer;
+    z-index: 101;
+    transition: opacity 0.3s;
+}
+
+/* ------------------------------------- */
+/* LOGICA DI APERTURA BUSTA */
+/* ------------------------------------- */
+
+#toggle:checked ~ #envelope-container #closed-state {
+    transform: translateY(100vh); 
+    opacity: 0;
+}
+
+#toggle:checked ~ #envelope-container .envelope-flap {
+    transform: rotateX(180deg) translateY(-100%);
+}
+
+#toggle:checked ~ #envelope-container #open-state {
+    display: block; 
+    opacity: 1; 
+    transform: translateY(0);
+}
+
+/* ------------------------------------- */
+/* STATO APERTO (Contenuto dell'Invito) */
+/* ------------------------------------- */
+
+#open-state {
+    background-color: var(--paper-white); 
+    border: 1px solid var(--gold); 
+    border-radius: 5px; 
+    padding: 40px;
+    position: absolute; 
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%; 
+    overflow-y: auto; 
+    box-sizing: border-box;
+    opacity: 0; 
+    transform: translateY(20px); 
+    transition: opacity 0.6s 0.2s, transform 0.6s 0.2s;
+}
+
+.small-text {
+    font-size: 0.9em;
+    margin-bottom: 5px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-family: 'Playfair Display', serif;
+}
+
+.cursive-name {
+    font-family: 'Great Vibes', cursive;
+    font-size: 5em;
+    font-weight: 400;
+    color: var(--black-text);
+    margin: 0; 
+    line-height: 1.2;
+}
+
+.date-time {
+    font-size: 1.1em;
+    margin-top: 20px;
+    margin-bottom: 30px;
+    letter-spacing: 1px;
+}
+
+.separator {
+    width: 60%;
+    height: 1px;
+    background-color: var(--gold);
+    margin: 20px auto;
+}
+
+/* ------------------------------------- */
+/* STILE BORDI EMOJI PERSONALIZZATI */
+/* ------------------------------------- */
+.rose-border {
+    text-align: center;
+    color: var(--boy-color); /* Colore emoji per Comunione */
+    font-size: 1.2em; 
+    margin: 5px 0; 
+}
+
+.rose-border.top-border {
+    margin-top: 15px; 
+    margin-bottom: 5px;
+}
+.rose-border.bottom-border {
+    margin-top: 5px;
+    margin-bottom: 25px; 
+}
+
+
+/* ------------------------------------- */
+/* STILE FOTO FESTEGGIATO (Corretto e Tondo) */
+/* ------------------------------------- */
+
+.event-photo {
+    /* Dimensioni fisse per un look compatto e centrato */
+    **width: 160px;**       
+    **height: 160px;**
+    
+    /* Mantiene l'area centrale visibile, senza deformare la foto */
+    **object-fit: cover;**  
+    
+    display: block; 
+    margin: 0 auto 30px auto; 
+    
+    /* Bordo circolare */
+    **border-radius: 50%;** 
+    
+    border: 3px solid var(--gold); 
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
+}
+
+/* ------------------------------------- */
+/* STILE PULSANTI DI AZIONE - CERCHIO */
+/* ------------------------------------- */
+
+.buttons-circle-container {
+    display: flex;
+    justify-content: space-around; 
+    align-items: flex-end;
+    margin: 30px auto;
+    max-width: 400px;
+}
+
+.circle-button {
+    text-decoration: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 80px; 
+    height: 80px; 
+    border-radius: 50%; 
+    border: 2px solid var(--gold); 
+    color: var(--gold);
+    background-color: transparent;
+    transition: all 0.3s;
+    font-family: 'Playfair Display', serif;
+}
+
+.circle-button:hover {
+    background-color: var(--gold);
+    color: var(--paper-white);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.circle-button:hover .button-icon {
+    color: var(--paper-white);
+}
+
+.button-icon {
+    font-size: 1.5em; 
+    line-height: 1;
+    color: var(--gold);
+    transition: color 0.3s;
+}
+
+.button-text {
+    font-size: 0.7em;
+    margin-top: 5px;
+    font-weight: 600;
+    color: var(--black-text); 
+}
+.circle-button:hover .button-text {
+    color: var(--paper-white);
+}
+
+/* Stile speciale per RSVP (Conferma presenza) */
+.circle-button.whatsapp-confirm {
+    border-color: var(--boy-color); 
+    color: var(--boy-color);
+}
+.circle-button.whatsapp-confirm:hover {
+    background-color: var(--boy-color);
+    color: var(--paper-white);
+}
+.circle-button.whatsapp-confirm:hover .button-icon,
+.circle-button.whatsapp-confirm:hover .button-text {
+    color: var(--paper-white);
+}
+
+/* ------------------------------------- */
+/* DECORAZIONI PER SESSO */
+/* ------------------------------------- */
+
+.decorations {
+    font-size: 2.5em;
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+/* Nasconde gli elementi decorativi di default */
+.teddy-bear, .balloons {
+    opacity: 0;
+    transition: opacity 0.5s;
+}
+
+/* Stile per RAGAZZO */
+#open-state.boy .balloons { opacity: 1; color: var(--boy-color); }
+#open-state.boy .teddy-bear { opacity: 1; color: var(--boy-color); }
+#open-state.boy .whatsapp-confirm { border-color: var(--boy-color); color: var(--boy-color); }
+#open-state.boy .whatsapp-confirm:hover { background-color: var(--boy-color); }
+
+/* Stile per RAGAZZA */
+#open-state.girl .balloons { opacity: 1; color: var(--girl-color); }
+#open-state.girl .teddy-bear { opacity: 1; color: var(--girl-color); }
+#open-state.girl .whatsapp-confirm { border-color: var(--girl-color); color: var(--girl-color); }
+#open-state.girl .whatsapp-confirm:hover { background-color: var(--girl-color); }
+
+/* ------------------------------------- */
+/* COUNTDOWN */
+/* ------------------------------------- */
+#countdown-container {
+    margin-top: 30px;
+    padding-top: 15px;
+    border-top: 1px solid var(--gold); 
+    text-align: center;
+}
+
+#countdown {
+    color: var(--black-text); 
+    font-size: 1.1em;
+    font-weight: 600;
+    line-height: 1.5;
+}
+
+#countdown .time-value {
+    color: var(--gold); 
+    font-size: 1.2em; 
+    font-weight: 700;
+    margin: 0 3px;
+}
+
+/* ------------------------------------- */
+/* PULSANTI SOCIAL */
+/* ------------------------------------- */
+.buttons-container {
+    display: flex;
+    flex-direction: column;
+    gap: 15px; 
+    margin-top: 15px; 
+}
+.buttons-container.social-buttons {
+    flex-direction: row; 
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-top: 10px;
+    gap: 10px;
+}
+
+.social-buttons .action-button {
+    padding: 8px 12px;
+    font-size: 0.8em;
+    border-radius: 5px; 
+    border: 1px solid var(--social-color); 
+    color: var(--social-color);
+    background-color: transparent;
+    transition: background-color 0.3s, color 0.3s;
+    text-decoration: none;
+    display: inline-block;
+    white-space: nowrap; 
+}
+.social-buttons .action-button:hover {
+    background-color: var(--social-color);
+    color: var(--paper-white);
+}
+
+.action-button {
+    text-decoration: none;
+    display: inline-block;
+}
+
+/* ------------------------------------- */
+/* MEDIA QUERY (Mobile) */
+/* ------------------------------------- */
+
+@media (max-width: 600px) {
+    #open-state {
+        padding: 30px 15px; 
+    }
+    /* Adatta la foto su mobile, leggermente più piccola */
+    .event-photo {
+        width: 140px;
+        height: 140px;
+        margin-bottom: 20px;
+    }
+    
+    .buttons-circle-container {
+        gap: 10px; 
+    }
+    .circle-button {
+        width: 70px; 
+        height: 70px;
+    }
+    .button-icon {
+        font-size: 1.4em;
+    }
+}
