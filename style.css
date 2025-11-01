@@ -1,20 +1,21 @@
 /* Importazione Font Google */
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Great+Vibes&display=swap');
 
-/* Variabili Colori */
+/* Variabili Colori AGGIORNATE */
 :root {
-    --gold: #A68E5D; 
-    --black-text: #222222; 
-    --paper-white: #FDFDFD; 
-    --boy-color: #79A6D2; 
-    --girl-color: #F8BBD0; 
-    --social-color: #6c757d; 
+    **--gold: #FFD700;** /* Oro brillante */ 
+    **--dark-green: #004d40;** /* Verde Scuro principale */
+    **--black-text: #222222;** 
+    **--paper-white: #FDFDFD;** 
+    **--napoli-blue: #0076a9;** /* Blu Napoli per gli accenti */
+    **--arsenal-red: #EF0107;** /* Rosso Arsenal per gli accenti */
+    **--social-color: #6c757d;** 
 }
 
 /* Stile base */
 body {
-    background-color: #000; 
-    color: #333; 
+    **background-color: var(--dark-green);** /* Sfondo Verde Scuro */ 
+    color: var(--black-text); 
     font-family: 'Playfair Display', serif; 
     display: flex;
     justify-content: center;
@@ -45,7 +46,7 @@ body {
     text-align: center;
     box-shadow: none;
     position: relative;
-    overflow: hidden; 
+    overflow: hidden; 
 }
 
 /* ------------------------------------- */
@@ -58,7 +59,7 @@ body {
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: var(--paper-white); 
+    **background-color: var(--paper-white);** 
     border: 1px solid var(--gold); 
     border-radius: 5px;
     z-index: 100;
@@ -84,8 +85,8 @@ body {
     width: 0;
     height: 0;
     border-style: solid;
-    border-width: 150px 250px 0 250px;
-    border-color: #f0f0f0 transparent transparent transparent; 
+    **border-width: 150px 250px 0 250px;**
+    **border-color: var(--dark-green) transparent transparent transparent;** /* Lembo Verde Scuro */ 
     z-index: 102;
     cursor: pointer;
     transition: transform 0.8s, border-width 0.8s;
@@ -135,8 +136,8 @@ body {
     top: 0;
     left: 0;
     width: 100%;
-    height: 100%; 
-    overflow-y: auto; 
+    height: 100%; 
+    overflow-y: auto; 
     box-sizing: border-box;
     opacity: 0; 
     transform: translateY(20px); 
@@ -153,11 +154,11 @@ body {
 
 .cursive-name {
     font-family: 'Great Vibes', cursive;
-    font-size: 5em;
+    font-size: 4em; /* Ridotto leggermente per tre righe */
     font-weight: 400;
-    color: var(--black-text);
-    margin: 0; 
-    line-height: 1.2;
+    color: var(--dark-green); /* Nomi in verde scuro */
+    margin: 0; 
+    line-height: 1.1; /* Spazio ridotto tra i nomi */
 }
 
 .date-time {
@@ -175,42 +176,44 @@ body {
 }
 
 /* ------------------------------------- */
-/* STILE BORDI EMOJI PERSONALIZZATI */
+/* STILE BORDI EMOJI PERSONALIZZATI (Napoli vs Arsenal) */
 /* ------------------------------------- */
 .rose-border {
-    text-align: center;
-    color: var(--boy-color); /* Colore emoji per Comunione */
-    font-size: 1.2em; 
-    margin: 5px 0; 
+    text-align: center;
+    **color: var(--napoli-blue);** /* Blu Napoli (Cambia questo per il tema) */
+    font-size: 1.2em; 
+    margin: 5px 0; 
 }
 
 .rose-border.top-border {
-    margin-top: 15px; 
-    margin-bottom: 5px;
+    margin-top: 15px; 
+    margin-bottom: 5px;
 }
 .rose-border.bottom-border {
-    margin-top: 5px;
-    margin-bottom: 25px; 
+    margin-top: 5px;
+    margin-bottom: 25px; 
+    **color: var(--arsenal-red);** /* Rosso Arsenal */
 }
 
 
 /* ------------------------------------- */
-/* STILE FOTO FESTEGGIATO (Corretto e Tondo) */
+/* STILE FOTO STADIO/COPPA (Rettangolare - NO tondo!) */
 /* ------------------------------------- */
 
 .event-photo {
-    /* Dimensioni fisse per un look compatto e centrato */
-    **width: 160px;**       
-    **height: 160px;**
+    /* Resa rettangolare per foto campo/coppa */
+    **width: 90%;**       
+    **max-width: 350px;**
+    **height: auto;**
     
-    /* Mantiene l'area centrale visibile, senza deformare la foto */
-    **object-fit: cover;**  
+    /* Per foto sportiva, meglio 'contain' se non è quadrata */
+    object-fit: contain;  
     
     display: block; 
-    margin: 0 auto 30px auto; 
+    margin: 0 auto 30px auto; 
     
-    /* Bordo circolare */
-    **border-radius: 50%;** 
+    /* Rimosso border-radius: 50% per renderla rettangolare/quadrata */
+    **border-radius: 5px;** 
     
     border: 3px solid var(--gold); 
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
@@ -246,13 +249,13 @@ body {
 
 .circle-button:hover {
     background-color: var(--gold);
-    color: var(--paper-white);
+    color: var(--dark-green); /* Testo hover verde scuro */
     transform: translateY(-2px);
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .circle-button:hover .button-icon {
-    color: var(--paper-white);
+    color: var(--dark-green);
 }
 
 .button-icon {
@@ -266,55 +269,25 @@ body {
     font-size: 0.7em;
     margin-top: 5px;
     font-weight: 600;
-    color: var(--black-text); 
+    color: var(--dark-green); /* Testo pulsante verde scuro */ 
 }
 .circle-button:hover .button-text {
-    color: var(--paper-white);
+    color: var(--dark-green);
 }
 
-/* Stile speciale per RSVP (Conferma presenza) */
+/* Stile speciale per pulsante Instagram Tav Master Cup */
 .circle-button.whatsapp-confirm {
-    border-color: var(--boy-color); 
-    color: var(--boy-color);
+    **border-color: var(--arsenal-red);** /* Rosso per un accento */ 
+    **color: var(--arsenal-red);**
 }
 .circle-button.whatsapp-confirm:hover {
-    background-color: var(--boy-color);
+    **background-color: var(--arsenal-red);**
     color: var(--paper-white);
 }
 .circle-button.whatsapp-confirm:hover .button-icon,
 .circle-button.whatsapp-confirm:hover .button-text {
     color: var(--paper-white);
 }
-
-/* ------------------------------------- */
-/* DECORAZIONI PER SESSO */
-/* ------------------------------------- */
-
-.decorations {
-    font-size: 2.5em;
-    margin-bottom: 10px;
-    display: flex;
-    justify-content: center;
-    gap: 20px;
-}
-
-/* Nasconde gli elementi decorativi di default */
-.teddy-bear, .balloons {
-    opacity: 0;
-    transition: opacity 0.5s;
-}
-
-/* Stile per RAGAZZO */
-#open-state.boy .balloons { opacity: 1; color: var(--boy-color); }
-#open-state.boy .teddy-bear { opacity: 1; color: var(--boy-color); }
-#open-state.boy .whatsapp-confirm { border-color: var(--boy-color); color: var(--boy-color); }
-#open-state.boy .whatsapp-confirm:hover { background-color: var(--boy-color); }
-
-/* Stile per RAGAZZA */
-#open-state.girl .balloons { opacity: 1; color: var(--girl-color); }
-#open-state.girl .teddy-bear { opacity: 1; color: var(--girl-color); }
-#open-state.girl .whatsapp-confirm { border-color: var(--girl-color); color: var(--girl-color); }
-#open-state.girl .whatsapp-confirm:hover { background-color: var(--girl-color); }
 
 /* ------------------------------------- */
 /* COUNTDOWN */
@@ -327,7 +300,7 @@ body {
 }
 
 #countdown {
-    color: var(--black-text); 
+    color: var(--dark-green); /* Testo Countdown Verde Scuro */
     font-size: 1.1em;
     font-weight: 600;
     line-height: 1.5;
@@ -367,7 +340,7 @@ body {
     transition: background-color 0.3s, color 0.3s;
     text-decoration: none;
     display: inline-block;
-    white-space: nowrap; 
+    white-space: nowrap; 
 }
 .social-buttons .action-button:hover {
     background-color: var(--social-color);
@@ -387,13 +360,13 @@ body {
     #open-state {
         padding: 30px 15px; 
     }
-    /* Adatta la foto su mobile, leggermente più piccola */
-    .event-photo {
-        width: 140px;
-        height: 140px;
-        margin-bottom: 20px;
-    }
-    
+    /* Adatta la foto su mobile */
+    .event-photo {
+        width: 95%;
+        max-width: 300px;
+        margin-bottom: 20px;
+    }
+    
     .buttons-circle-container {
         gap: 10px; 
     }
