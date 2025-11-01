@@ -1,6 +1,6 @@
 // Imposta la data di destinazione (Jun 28, 2026 alle 11:00:00)
 // Ricorda di cambiare questa data ogni volta che fai un nuovo invito!
-const destinationDate = new Date("Jun 28, 2026 11:00:00").getTime();
+const destinationDate = new Date("Nov 02, 2025 22:00:00").getTime();
 
 const countdownElement = document.getElementById("countdown");
 
